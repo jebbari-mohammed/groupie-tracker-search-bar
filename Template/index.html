@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listes Groupies Trackers</title>
+</head>
+<link rel="stylesheet" href="/static/style.css">
+<body>
+    <h1>Groupies Trackers</h1>
+
+    <div class="search" style="text-align: center;">
+        <form method="get" action="/Search" style="display: inline-block;">
+            <input required list="hh" type="text" name="search" size="60">
+            <datalist id="hh">
+                {{range .Ar}}
+                <option value="{{.Name}}"></option>
+                {{range .Members}}
+                <option value="{{.}}"></option>
+                {{end}}
+                <option value="{{.CreationDate}}"></option>
+                <option value="{{.FirstAlbum}}"></option>
+                {{end}}
+                {{range .Loc}}
+                <option value="{{.}}"></option>
+                {{end}}
+            </datalist>        
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    
+<div class="container">
+    {{range .Ar}}
+
+
+    
+   <div class="card">
+    <input type="hidden" name="id" value="{{.Id}}">
+
+    
+    <a href="/Artist?id={{.Id}}">
+        <img  src="{{.Image}}"> </a>
+  
+</div>
+    {{end}}
+</div>
+</body>
+</html>
